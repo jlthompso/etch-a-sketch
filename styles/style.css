@@ -2,19 +2,23 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    margin: 100px auto 0;
-    height: 500px;
-    width: 500px;
+    margin: 30px auto 0;
     justify-content: space-between;
-    align-items: space-between;
+    align-content: space-between;
 }
 
 .cell {
     border-style: solid;
     border-color: black;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 5px;
-    height: 120px;
-    width: 120px;
     background-color: white;
+    flex: 1 1 auto;
+}
+
+#resetButton {
+    display: block;
+    margin: 10px auto 0;
+    height: 50px;
+    width: 200px;
 }

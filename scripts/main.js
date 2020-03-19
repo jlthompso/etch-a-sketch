@@ -1,14 +1,45 @@
+const containerHeight = 650; // px
+const containerWidth = containerHeight;
+const cellSpacing = 2; // px
+let gridSize = 4; // number of rows
+let cells;
 const container = document.querySelector('#container');
+container.style.width = containerWidth + "px";
+container.style.height = containerHeight + "px";
 
-for (let i = 0; i < 16; i++) {
-    var div = document.createElement('div');
-    div.className = "cell";
-    container.appendChild(div);
-}
+createGrid(gridSize);
 
-const cells = document.querySelectorAll('.cell');
-cells.forEach((cell) => {
-    cell.addEventListener('mouseenter', (e) => {
-        cell.style.backgroundColor = 'blue';
+const resetButton = document.querySelector('#resetButton');
+resetButton.addEventListener('click', function() {
+    cells.forEach((cell) => {
+        cell.style.backgroundColor = 'white';
     });
+    gridSize = Number(prompt("Enter number of rows."));
+    cells.forEach((cell) => {
+        container.removeChild(cell);
+    })
+    createGrid(gridSize);
 });
+
+function createGrid(gridSize) {
+    let numCells = Math.pow(gridSize, 2);
+    let cumSpace = (gridSize - 1) * cellSpacing;
+    let cellDim = containerWidth / gridSize - cellSpacing;
+    if (cellDim < cumSpace) {
+        console.log("cumSpace = " + cumSpace);
+        console.log("cellDim = " + cellDim);
+        console.log (cumSpace / cellDim);
+    }
+    for (let i = 0; i < numCells; i++) {
+        var div = document.createElement('div');
+        div.className = "cell";
+        div.style.width = cellDim + "px";
+        div.style.height = cellDim + "px";
+        container.appendChild(div);
+        div.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = 'blue';
+        });
+    }
+
+    cells = document.querySelectorAll('.cell');
+}
