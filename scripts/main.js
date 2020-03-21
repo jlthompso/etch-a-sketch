@@ -2,6 +2,8 @@ const containerHeight = 650; // px
 const containerWidth = containerHeight;
 let gridSize = 4; // number of rows
 let cells;
+let bgShade = 220;
+let shadeChange = 0.2;
 const container = document.querySelector('#container');
 container.style.width = containerWidth + "px";
 container.style.height = containerHeight + "px";
@@ -21,15 +23,18 @@ resetButton.addEventListener('click', function() {
 });
 
 function createGrid(gridSize) {
-    let bgColor = Math.floor(Math.random()*16777215).toString(16);
     container.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
     let numCells = Math.pow(gridSize, 2);
     for (let i = 0; i < numCells; i++) {
         var div = document.createElement('div');
         div.className = "cell";
+        div.style.setProperty("--entries", 1);
         container.appendChild(div);
         div.addEventListener('mouseenter', function() {
-            this.style.backgroundColor = "#" + bgColor;
+            let numEntries = this.style.getPropertyValue("--entries");
+            let newShade = numEntries * bgShade;
+            this.style.setProperty("--entries", numEntries - shadeChange);
+            this.style.backgroundColor = `rgb(${newShade} ${newShade} ${newShade})`;
         });
     }
 
