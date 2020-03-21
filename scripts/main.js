@@ -25,16 +25,12 @@ function createGrid(gridSize) {
     let numCells = Math.pow(gridSize, 2);
     let cumSpace = (gridSize - 1) * cellSpacing;
     let cellDim = containerWidth / gridSize - cellSpacing;
-    if (cellDim < cumSpace) {
-        console.log("cumSpace = " + cumSpace);
-        console.log("cellDim = " + cellDim);
-        console.log (cumSpace / cellDim);
-    }
     for (let i = 0; i < numCells; i++) {
         var div = document.createElement('div');
         div.className = "cell";
         div.style.width = cellDim + "px";
         div.style.height = cellDim + "px";
+        div.style.flex = `1 1 ${containerWidth / gridSize}px`;
         container.appendChild(div);
         div.addEventListener('mouseenter', function() {
             this.style.backgroundColor = 'blue';

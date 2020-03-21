@@ -1,5 +1,5 @@
 #container {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     position: relative;
     margin: 30px auto 0;
