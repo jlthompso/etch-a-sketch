@@ -1,6 +1,5 @@
 const containerHeight = 650; // px
 const containerWidth = containerHeight;
-const cellSpacing = 2; // px
 let gridSize = 4; // number of rows
 let cells;
 const container = document.querySelector('#container');
@@ -22,15 +21,11 @@ resetButton.addEventListener('click', function() {
 });
 
 function createGrid(gridSize) {
+    container.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
     let numCells = Math.pow(gridSize, 2);
-    let cumSpace = (gridSize - 1) * cellSpacing;
-    let cellDim = containerWidth / gridSize - cellSpacing;
     for (let i = 0; i < numCells; i++) {
         var div = document.createElement('div');
         div.className = "cell";
-        div.style.width = cellDim + "px";
-        div.style.height = cellDim + "px";
-        div.style.flex = `1 1 ${containerWidth / gridSize}px`;
         container.appendChild(div);
         div.addEventListener('mouseenter', function() {
             this.style.backgroundColor = 'blue';
