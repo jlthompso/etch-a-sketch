@@ -21,6 +21,7 @@ resetButton.addEventListener('click', function() {
 });
 
 function createGrid(gridSize) {
+    let bgColor = Math.floor(Math.random()*16777215).toString(16);
     container.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
     let numCells = Math.pow(gridSize, 2);
     for (let i = 0; i < numCells; i++) {
@@ -28,7 +29,7 @@ function createGrid(gridSize) {
         div.className = "cell";
         container.appendChild(div);
         div.addEventListener('mouseenter', function() {
-            this.style.backgroundColor = 'blue';
+            this.style.backgroundColor = "#" + bgColor;
         });
     }
 
